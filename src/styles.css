@@ -1,6 +1,9 @@
 html {
   box-sizing: border-box;
 }
+body {
+  background-color: grey;
+}
 li {
   margin-top: 0px;
   margin-bottom: 0px;

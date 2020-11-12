@@ -1,25 +1,32 @@
 import './styles.css';
 import fetchCountries from './fetchCountries.js';
 // import countryInfo from './templates/countryInfo.hbs';
-import '@pnotify/core/dist/BrightTheme.css';
 
-var debounce = require('lodash.debounce');
+// const { error } = require('@pnotify/core');
+// import { alert, notice, info, success, error, defaultModules } from'@pnotify/core';
+// import "@pnotify/core/dist/PNotify.css";
+// import "@pnotify/core/dist/BrightTheme.css";
+
+// import { alert, defaultModules } from 'node_modules/@pnotify/core/dist/PNotify.js';
+
+
+const debounce = require('lodash.debounce');
 
 
 export const refs = {
-  listCountries: document.querySelector('.list-countries'),
+  countriesList: document.querySelector('.countries-list'),
   search: document.querySelector('.js-search'),
 }
 
-// refs.search.addEventListener('input', _.debounce(onSearchCountries, 500));
-refs.search.addEventListener('input', onSearchCountries);
+refs.search.addEventListener('input', debounce(onSearchCountries, 500));
 
 
 function onSearchCountries(e) {
   e.preventDefault();
-  const searchValue = e.currentTarget.value;
-  refs.listCountries.innerHTML = '';
+  let searchValue = e.target.value.trim();
+  refs.countriesList.innerHTML = '';
   fetchCountries(searchValue);
-  console.log(searchValue);
-  searchValue = "" ? refs.listCountries.innerHTML = '' : searchValue;
+  // console.log(searchValue);
+
+  if (!searchValue) return
 }
