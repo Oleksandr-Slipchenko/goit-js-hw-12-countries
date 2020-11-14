@@ -14,7 +14,6 @@ function onSearchCountries(e) {
   e.preventDefault();
   let searchValue = e.target.value.trim();
   refs.countriesList.innerHTML = '';
+  if (!searchValue) return;
   fetchCountries(searchValue);
-
-  if (!searchValue) return
 }
